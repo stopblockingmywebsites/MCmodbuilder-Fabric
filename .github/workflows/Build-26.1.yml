@@ -44,3 +44,9 @@ jobs:
       - name: Build mod with Gradle
         working-directory: mod_extracted
         run: gradle build
+
+      - name: Upload built mod artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod-build
+          path: mod_extracted/build/libs/*.jar
