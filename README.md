@@ -1,4 +1,4 @@
-# ModBuilder 🛠️
+# ModBuilder (Fabric)
 
 > A GitHub Actions-powered build pipeline for packaging Minecraft mods — no local toolchain required.
 
