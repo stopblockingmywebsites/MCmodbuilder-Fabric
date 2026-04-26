@@ -8,7 +8,7 @@
 
 ModBuilder lets you compile and package your Minecraft mod entirely through GitHub. Just upload your source, trigger the workflow, and download a ready-to-use `.zip` containing both the main jar and sources jar.
 
-# Versions supported currently:
+### Versions supported currently:
 - 1.20.1
 - 1.21.11
 - 26.1
