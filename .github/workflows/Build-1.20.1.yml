@@ -61,13 +61,20 @@ jobs:
       - name: Build mod with Gradle
         run: |
           set -euo pipefail
-          if ! command -v gradle &>/dev/null; then
-            echo "ERROR: gradle command not available." >&2
-            exit 1
-          fi
-          gradle --version
           cd "$PROJECT_ROOT"
-          gradle build --no-daemon
+          if [[ -f "gradle/wrapper/gradle-wrapper.jar" && -f "gradlew" ]]; then
+            echo "Gradle wrapper found — using ./gradlew"
+            chmod +x gradlew
+            ./gradlew build --no-daemon
+          else
+            echo "No Gradle wrapper found — using system gradle"
+            if ! command -v gradle &>/dev/null; then
+              echo "ERROR: gradle command not available." >&2
+              exit 1
+            fi
+            gradle --version
+            gradle build --no-daemon
+          fi
 
       - name: Upload built mod artifact
         uses: actions/upload-artifact@v4
