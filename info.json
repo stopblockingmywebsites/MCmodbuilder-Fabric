@@ -3,7 +3,6 @@
   "gradle_version": "9.4.1",
   "_comment2" : "Java version to be exact"
   "java_version": "25.0.2",
-  "_comment3" : "vendor name to be short form."
-  "java_vendor": "tem"
+  "java_vendor": "temurin"
 }
 
