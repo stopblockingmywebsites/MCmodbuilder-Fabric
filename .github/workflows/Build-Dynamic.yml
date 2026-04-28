@@ -5,6 +5,7 @@ on:
     paths:
       - '*.zip'
       - 'input/*.zip'
+      - 'info.json'
   workflow_dispatch:
 
 jobs:
@@ -32,12 +33,17 @@ jobs:
       - name: Read info.json
         run: |
           set -euo pipefail
+          # Prefer info.json bundled inside the zip; fall back to repo root
           INFO_FILE=$(find work -maxdepth 4 -name "info.json" | sort | head -1)
-          if [[ -z "$INFO_FILE" ]]; then
-            echo "ERROR: info.json not found inside the zip." >&2
+          if [[ -n "$INFO_FILE" ]]; then
+            echo "Found info.json inside zip at: $INFO_FILE"
+          elif [[ -f "info.json" ]]; then
+            INFO_FILE="info.json"
+            echo "Found info.json in repository root."
+          else
+            echo "ERROR: info.json not found inside the zip or in the repository root." >&2
             exit 1
           fi
-          echo "Found info.json at: $INFO_FILE"
           GRADLE_VERSION=$(jq -r '.gradle_version' "$INFO_FILE")
           JAVA_VERSION=$(jq -r '.java_version' "$INFO_FILE")
           JAVA_VENDOR=$(jq -r '.java_vendor' "$INFO_FILE")
