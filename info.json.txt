@@ -4,4 +4,5 @@
   "java_vendor": "temurin"
 }
 
-This an example version of info.json. This file can be used by build-custom to build using a custom gradle and java version.
+This an example version of info.json.
+This file can be used by build-custom to build using a custom gradle and java version.
