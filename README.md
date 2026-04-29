@@ -12,6 +12,7 @@ ModBuilder lets you compile and package your Minecraft mod entirely through GitH
 - 1.20.1
 - 1.21.11
 - 26.1
+- Custom
 
 ---
 
